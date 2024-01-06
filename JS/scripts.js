@@ -39,11 +39,25 @@ const saveTodo = (text) => {
 
 // Eventos
 todoForm.addEventListener("submit", (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const inputValue = todoInput.value;
 
-    if(inputValue) {
+    if (inputValue) {
         saveTodo(inputValue);
     }
-})
+});
+
+document.addEventListener("click", (e) => {
+
+    const targetElement = e.target;
+    const parentElement = targetElement.closest("div");
+
+    if (targetElement.classList.contains("finish-todo")) {
+        parentElement.classList.toggle("done");
+    }
+
+    if (targetElement.classList.contains("remove-todo")) {
+        parentElement.remove();
+    }
+});
